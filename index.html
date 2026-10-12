@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>旻锜科技 VAN ROYAL · 品牌全域营销专家</title>
+<meta name="description" content="旻锜科技（VAN ROYAL）成立于2020年，专注淘宝天猫代运营、抖音直播代运营、小红书内容营销等一站式品牌全域营销服务，是抖音、小红书、天猫、京东等平台头部内容合作方。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1117'/%3E%3Cpath d='M14 16 L32 52 L50 16 L38 16 L32 30 L26 16 Z' fill='%23ff6a2a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Sora:wght@400;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap">
+<style>
+/* ============ 基础 ============ */
+:root{
+  --bg:#0d1117; --bg2:#12161e; --panel:#171c26; --panel2:#1d2430;
+  --ink:#f4f6f8; --dim:#9aa5b5; --dim2:#67717f;
+  --accent:#ff6a2a; --accent2:#ff8a4d; --accent-soft:rgba(255,106,42,.13);
+  --line:rgba(244,246,248,.09);
+  --radius:16px; --radius-lg:22px;
+  --container:1180px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.7;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+/* 颗粒质感层 */
+body::after{
+  content:""; position:fixed; inset:0; z-index:2000; pointer-events:none; opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+h1,h2,h3,.disp{font-family:"Sora","Noto Sans SC",sans-serif;font-weight:700;letter-spacing:-.01em}
+.container{max-width:var(--container);margin:0 auto;padding:0 24px}
+section{position:relative}
+.section-pad{padding:96px 0}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:13px;letter-spacing:.22em;color:var(--accent);font-weight:600;
+  text-transform:uppercase;margin-bottom:20px;
+}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent)}
+.section-title{font-size:clamp(28px,4vw,44px);font-weight:800;line-height:1.25;letter-spacing:0}
+.section-sub{color:var(--dim);font-size:clamp(15px,1.6vw,17px);max-width:640px;margin-top:14px;font-weight:300}
+.center{text-align:center}
+.center .section-sub{margin-left:auto;margin-right:auto}
+
+/* 滚动进度条 */
+#progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:1200;width:0%}
+
+/* 导航 */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  transition:background .4s var(--ease),box-shadow .4s,backdrop-filter .4s;
+}
+header.scrolled{background:rgba(13,17,23,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo svg{width:34px;height:34px;flex:none}
+.logo .word{font-family:"Sora",sans-serif;font-weight:700;font-size:19px;letter-spacing:.06em;line-height:1}
+.logo .cn{font-size:11px;color:var(--dim);letter-spacing:.32em;margin-top:4px}
+.nav-links{display:none;align-items:center;gap:34px}
+.nav-links a{font-size:14px;color:var(--dim);transition:color .3s;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--accent);transition:width .35s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{display:none;font-size:13px;font-weight:600;color:#0d1117;background:var(--accent);padding:9px 20px;border-radius:99px;transition:background .3s,transform .3s}
+.nav-cta:hover{background:var(--accent2);transform:translateY(-1px)}
+.burger{width:40px;height:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.burger span{width:20px;height:2px;background:var(--ink);transition:.35s var(--ease)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{
+  position:fixed;top:68px;left:0;right:0;bottom:0;z-index:999;
+  background:rgba(13,17,23,.98);padding:32px 28px;
+  display:flex;flex-direction:column;gap:8px;
+  transform:translateX(100%);transition:transform .45s var(--ease);
+}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu a{font-size:22px;font-weight:600;padding:14px 6px;border-bottom:1px solid var(--line);color:var(--ink)}
+.mobile-menu a small{font-size:12px;color:var(--dim2);margin-left:10px;letter-spacing:.1em}
+
+/* 滚动显现 */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-delay="1"]{transition-delay:.1s}
+.reveal[data-delay="2"]{transition-delay:.2s}
+.reveal[data-delay="3"]{transition-delay:.3s}
+.reveal[data-delay="4"]{transition-delay:.4s}
+
+/* ============ Hero ============ */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding:110px 0 60px;overflow:hidden;
+  background:
+    radial-gradient(1100px 600px at 75% -10%, rgba(255,106,42,.16), transparent 60%),
+    linear-gradient(180deg,#0b0e13 0%,#0d1117 60%,#0d1117 100%);
+}
+.hero-art{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:url("assets/hero_building_clean.png") right center/cover no-repeat;
+  opacity:.28;-webkit-mask-image:linear-gradient(90deg,transparent 8%,#000 62%);
+  mask-image:linear-gradient(90deg,transparent 8%,#000 62%);
+  animation:kenburns 26s var(--ease) infinite alternate;
+}
+@keyframes kenburns{from{transform:scale(1.04) translateX(0)}to{transform:scale(1.13) translateX(-2%)}}
+.hero-inner{position:relative;z-index:2;width:100%}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.26em;
+  color:var(--accent);border:1px solid rgba(255,106,42,.35);border-radius:99px;padding:7px 16px;
+  margin-bottom:28px;
+}
+.hero-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2.2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,106,42,.5)}50%{opacity:.6;box-shadow:0 0 0 6px rgba(255,106,42,0)}}
+.hero h1{font-size:clamp(40px,8vw,84px);font-weight:800;line-height:1.12;letter-spacing:-.02em}
+.hero h1 .en{display:block;font-size:.42em;font-weight:600;color:var(--dim);letter-spacing:.34em;margin-bottom:14px}
+.hero-sub{color:var(--dim);font-size:clamp(15px,1.8vw,18px);max-width:560px;margin-top:22px;font-weight:300}
+.hero-sub b{color:var(--ink);font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-size:15px;font-weight:600;padding:15px 30px;border-radius:12px;transition:transform .3s var(--ease),background .3s,color .3s,border-color .3s}
+.btn-primary{background:var(--accent);color:#0d1117}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-3px)}
+.btn-ghost{border:1px solid rgba(244,246,248,.24);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:64px;max-width:640px}
+.hstat{border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px;background:rgba(23,28,38,.55)}
+.hstat .num{font-family:"Sora",sans-serif;font-size:clamp(22px,3vw,30px);font-weight:700;color:var(--ink)}
+.hstat .num i{font-style:normal;color:var(--accent)}
+.hstat .lab{font-size:12px;color:var(--dim2);letter-spacing:.12em;margin-top:2px}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;color:var(--dim2);font-size:11px;letter-spacing:.3em;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-hint::after{content:"";width:1px;height:34px;background:linear-gradient(180deg,var(--accent),transparent);animation:drop 1.8s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(1);transform-origin:top;opacity:0}}
+
+/* 入场动画 */
+.hero .rise{opacity:0;transform:translateY(36px);animation:rise 1s var(--ease) forwards}
+.hero .rise:nth-child(2){animation-delay:.12s}
+.hero .rise:nth-child(3){animation-delay:.26s}
+.hero .rise:nth-child(4){animation-delay:.4s}
+.hero .rise:nth-child(5){animation-delay:.55s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* ============ 平台跑马灯 ============ */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);overflow:hidden;padding:22px 0}
+.marquee-track{display:flex;width:max-content;animation:marquee 30s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-item{display:flex;align-items:center;gap:14px;padding:0 34px;white-space:nowrap;color:var(--dim);font-size:15px;font-weight:500;letter-spacing:.14em}
+.marquee-item b{color:var(--ink);font-weight:700}
+.marquee-item .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.6}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ============ 公司简介 ============ */
+.about-grid{display:grid;gap:48px;align-items:center;margin-top:52px}
+.about-copy p{color:var(--dim);font-size:15.5px;font-weight:300;margin-bottom:16px}
+.about-copy p b{color:var(--ink);font-weight:600}
+.about-points{display:grid;gap:12px;margin-top:26px}
+.apoint{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;background:var(--panel);transition:border-color .3s,transform .3s var(--ease)}
+.apoint:hover{border-color:rgba(255,106,42,.5);transform:translateY(-3px)}
+.apoint .idx{font-family:"Sora",sans-serif;font-size:13px;color:var(--accent);font-weight:700;margin-top:3px}
+.apoint h4{font-size:15px;font-weight:700}
+.apoint p{font-size:13px;color:var(--dim);font-weight:300;margin-top:2px}
+.about-media{position:relative}
+.about-media .frame{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--line)}
+.about-media img{width:100%;height:340px;object-fit:cover;filter:grayscale(1) contrast(1.05);transition:filter .6s,transform 1.2s var(--ease)}
+.about-media:hover img{filter:grayscale(.1);transform:scale(1.04)}
+.float-card{
+  position:absolute;left:-14px;bottom:-18px;background:var(--panel2);border:1px solid var(--line);
+  border-radius:14px;padding:14px 20px;box-shadow:0 18px 40px rgba(0,0,0,.4);
+}
+.float-card .n{font-family:"Sora",sans-serif;font-size:26px;font-weight:800;color:var(--accent)}
+.float-card .t{font-size:12px;color:var(--dim2)}
+
+/* ============ 三大核心能力 ============ */
+.caps{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.caps-grid{display:grid;gap:16px;margin-top:52px}
+.cap{border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px 26px;background:var(--panel);position:relative;overflow:hidden;transition:transform .4s var(--ease),border-color .4s}
+.cap::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),transparent);opacity:0;transition:opacity .4s}
+.cap:hover{transform:translateY(-6px);border-color:rgba(255,106,42,.45)}
+.cap:hover::before{opacity:1}
+.cap .ic{width:46px;height:46px;border-radius:12px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.cap .ic svg{width:24px;height:24px;stroke:var(--accent)}
+.cap h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.cap p{font-size:13.5px;color:var(--dim);font-weight:300}
+
+/* ============ 主打逻辑（人货场） ============ */
+.logic{background:radial-gradient(900px 500px at 50% 0%,rgba(255,106,42,.08),transparent 65%)}
+.logic-wrap{display:grid;gap:44px;align-items:center;margin-top:48px}
+.ring-wrap{display:flex;justify-content:center}
+.ring{position:relative;width:min(440px,86vw);aspect-ratio:1}
+.ring svg{width:100%;height:100%;overflow:visible}
+.ring .orbit{fill:none;stroke:rgba(244,246,248,.1);stroke-width:1}
+.ring .orbit-accent{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:6 10;animation:spin 40s linear infinite;transform-origin:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ring .node{position:absolute;transform:translate(-50%,-50%);text-align:center;width:118px}
+.ring .node .tag{display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:50%;background:var(--panel2);border:1px solid var(--line);font-size:13px;font-weight:600;letter-spacing:.08em;transition:all .35s var(--ease)}
+.ring .node:hover .tag{border-color:var(--accent);background:var(--accent-soft);transform:scale(1.08)}
+.ring .node .en{display:block;font-size:10px;color:var(--dim2);letter-spacing:.2em;margin-top:8px}
+.ring-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:148px;height:148px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#2a313e,var(--panel));border:1px solid rgba(255,106,42,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 60px rgba(255,106,42,.16);animation:breathe 4s ease-in-out infinite}
+@keyframes breathe{0%,100%{box-shadow:0 0 40px rgba(255,106,42,.12)}50%{box-shadow:0 0 80px rgba(255,106,42,.28)}}
+.ring-center .b{font-family:"Sora",sans-serif;font-weight:800;font-size:14px;letter-spacing:.1em}
+.ring-center .s{font-size:10px;color:var(--dim);letter-spacing:.26em;margin-top:2px}
+.whg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+.whg .w{border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center;background:var(--panel)}
+.whg .w .c{font-family:"Sora",sans-serif;font-size:24px;font-weight:800;color:var(--accent)}
+.whg .w .t{font-size:12px;color:var(--dim2);letter-spacing:.2em;margin-top:4px}
+.logic-desc{color:var(--dim);font-size:14.5px;font-weight:300}
+.logic-desc b{color:var(--ink)}
+.logic-steps{margin-top:22px;display:grid;gap:12px}
+.lstep{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:12px;padding:13px 16px;background:var(--panel)}
+.lstep .n{font-family:"Sora",sans-serif;color:var(--accent);font-weight:800;font-size:14px;width:24px;flex:none}
+.lstep span{font-size:14px}
+
+/* ============ 发展历程 ============ */
+.path{margin-top:60px}
+.path-line{display:none;position:relative}
+.path-desk{position:relative}
+.path-desk::before{content:"";position:absolute;left:0;right:0;top:42px;height:2px;background:linear-gradient(90deg,transparent,rgba(255,106,42,.5) 15%,rgba(255,106,42,.5) 85%,transparent)}
+.path-item{position:relative;padding-top:0}
+.path-item .year{font-family:"Sora",sans-serif;font-size:34px;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(255,106,42,.85);line-height:1}
+.path-item .yr{display:inline-flex;align-items:center;justify-content:center;width:68px;height:68px;border-radius:50%;border:1px solid rgba(255,106,42,.55);background:var(--bg);font-family:"Sora",sans-serif;font-size:15px;font-weight:700;color:var(--accent);margin:8px 0 18px}
+.path-item h4{font-size:16px;font-weight:700;margin-bottom:6px}
+.path-item p{font-size:13px;color:var(--dim);font-weight:300}
+.path-mobile{display:grid;gap:0;position:relative}
+.path-mobile::before{content:"";position:absolute;left:30px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,transparent,rgba(255,106,42,.5) 10%,rgba(255,106,42,.5) 90%,transparent)}
+.pm-item{position:relative;padding:0 0 30px 76px}
+.pm-item::before{content:"";position:absolute;left:22px;top:6px;width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px rgba(255,106,42,.15)}
+.pm-item .year{font-family:"Sora",sans-serif;font-size:20px;font-weight:800;color:var(--accent)}
+.pm-item h4{font-size:15px;font-weight:700;margin-top:2px}
+.pm-item p{font-size:13px;color:var(--dim);font-weight:300;margin-top:4px}
+
+/* ============ 核心业务 ============ */
+.biz{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.biz-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:52px}
+.biz-card{border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;background:var(--panel);display:flex;gap:16px;transition:transform .35s var(--ease),border-color .35s,background .35s;position:relative;overflow:hidden}
+.biz-card::after{content:"";position:absolute;right:-30px;top:-30px;width:90px;height:90px;border-radius:50%;background:var(--accent-soft);opacity:0;transition:opacity .35s}
+.biz-card:hover{transform:translateY(-4px);border-color:rgba(255,106,42,.5);background:var(--panel2)}
+.biz-card:hover::after{opacity:1}
+.biz-card .num{font-family:"Sora",sans-serif;font-size:15px;font-weight:800;color:var(--accent);flex:none;padding-top:2px}
+.biz-card h3{font-size:16px;font-weight:700;margin-bottom:5px}
+.biz-card p{font-size:13px;color:var(--dim);font-weight:300}
+
+/* ============ 成果总览 ============ */
+.results{padding:80px 0}
+.results-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:48px}
+.res{border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px 24px;background:linear-gradient(160deg,var(--panel2),var(--panel));position:relative;overflow:hidden}
+.res::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);opacity:.85}
+.res .big{font-family:"Sora","Noto Sans SC",sans-serif;font-size:clamp(30px,5vw,44px);font-weight:800;letter-spacing:-.01em}
+.res .big i{font-style:normal;color:var(--accent)}
+.res .cap{font-size:13px;color:var(--dim);letter-spacing:.06em;margin-top:6px}
+.res .note{font-size:12px;color:var(--dim2);margin-top:10px;font-weight:300}
+
+/* ============ 案例 ============ */
+.case-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-top:44px}
+.ctab{font-size:13.5px;padding:9px 20px;border-radius:99px;border:1px solid var(--line);color:var(--dim);transition:all .3s}
+.ctab:hover{color:var(--ink);border-color:rgba(255,106,42,.5)}
+.ctab.active{background:var(--accent);color:#0d1117;border-color:var(--accent);font-weight:600}
+.case-grid{display:grid;gap:16px;margin-top:32px}
+.case-card{border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px 24px;background:var(--panel);display:flex;flex-direction:column;gap:14px;transition:transform .35s var(--ease),border-color .35s,opacity .4s}
+.case-card:hover{transform:translateY(-5px);border-color:rgba(255,106,42,.5)}
+.case-card .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.case-card .brand{font-size:17px;font-weight:700}
+.case-card .cat{font-size:11px;color:var(--accent);border:1px solid rgba(255,106,42,.4);border-radius:99px;padding:3px 12px;white-space:nowrap}
+.case-card .desc{font-size:13px;color:var(--dim);font-weight:300}
+.case-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cm{border:1px solid var(--line);border-radius:12px;padding:11px 13px;background:rgba(13,17,23,.5)}
+.cm .v{font-family:"Sora",sans-serif;font-size:17px;font-weight:700;color:var(--ink)}
+.cm .v em{font-style:normal;color:var(--accent)}
+.cm .k{font-size:11px;color:var(--dim2);margin-top:1px}
+.case-card.hide{display:none}
+.case-card.fade{opacity:0;transform:translateY(16px)}
+
+/* ============ 公司场景 ============ */
+.scenes{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.scene-grid{display:grid;gap:16px;margin-top:48px}
+.scene{border-radius:var(--radius-lg);overflow:hidden;position:relative;border:1px solid var(--line);aspect-ratio:4/3}
+.scene img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.06);transition:filter .6s,transform 1.4s var(--ease)}
+.scene:hover img{filter:grayscale(.15);transform:scale(1.06)}
+.scene .tag{position:absolute;left:16px;bottom:14px;font-size:12px;letter-spacing:.16em;color:#fff;background:rgba(13,17,23,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:6px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.14)}
+.scene-note{margin-top:26px;color:var(--dim);font-size:14px;font-weight:300;text-align:center;max-width:760px;margin-left:auto;margin-right:auto}
+.scene-note b{color:var(--ink)}
+
+/* ============ CTA ============ */
+.cta-section{padding:110px 0;background:radial-gradient(800px 420px at 50% 100%,rgba(255,106,42,.14),transparent 62%)}
+.cta-box{text-align:center;max-width:760px;margin:0 auto}
+.cta-box h2{font-size:clamp(30px,5vw,52px);font-weight:800;line-height:1.2}
+.cta-box p{color:var(--dim);font-size:15.5px;font-weight:300;margin-top:18px}
+.cta-contact{margin-top:40px;display:grid;gap:14px;max-width:520px;margin-left:auto;margin-right:auto}
+.cci{display:flex;align-items:center;gap:16px;border:1px solid var(--line);border-radius:14px;padding:16px 20px;background:var(--panel);text-align:left;transition:border-color .3s}
+.cci:hover{border-color:rgba(255,106,42,.5)}
+.cci .ic{width:42px;height:42px;flex:none;border-radius:11px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center}
+.cci .ic svg{width:20px;height:20px;stroke:var(--accent)}
+.cci .k{font-size:11px;color:var(--dim2);letter-spacing:.14em}
+.cci .v{font-size:15px;font-weight:600;color:var(--ink)}
+.cci .v.ph{color:var(--dim2);font-weight:400;font-size:13px}
+
+/* ============ Footer ============ */
+footer{border-top:1px solid var(--line);background:var(--bg2);padding:56px 0 34px}
+.foot-grid{display:grid;gap:34px;margin-bottom:40px}
+.foot-brand .word{font-family:"Sora",sans-serif;font-size:22px;font-weight:800;letter-spacing:.06em}
+.foot-brand p{color:var(--dim);font-size:13px;font-weight:300;margin-top:10px;max-width:340px}
+.foot-col h5{font-size:13px;letter-spacing:.18em;color:var(--dim2);margin-bottom:16px}
+.foot-col a{display:block;font-size:14px;color:var(--dim);padding:6px 0;transition:color .3s}
+.foot-col a:hover{color:var(--accent)}
+.foot-bottom{border-top:1px solid var(--line);padding-top:26px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
+.foot-bottom p{font-size:12.5px;color:var(--dim2)}
+
+/* 返回顶部 */
+#toTop{position:fixed;right:22px;bottom:24px;z-index:1100;width:44px;height:44px;border-radius:50%;background:var(--accent);color:#0d1117;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(14px);transition:all .35s var(--ease);box-shadow:0 10px 26px rgba(255,106,42,.3)}
+#toTop.show{opacity:1;transform:none}
+#toTop:hover{background:var(--accent2)}
+#toTop svg{width:18px;height:18px}
+
+/* toast */
+#toast{position:fixed;left:50%;bottom:34px;transform:translate(-50%,80px);z-index:3000;background:var(--panel2);border:1px solid rgba(255,106,42,.5);color:var(--ink);font-size:14px;padding:14px 26px;border-radius:12px;box-shadow:0 16px 44px rgba(0,0,0,.5);transition:transform .45s var(--ease);max-width:86vw;text-align:center}
+#toast.show{transform:translate(-50%,0)}
+
+/* ============ 断点 ============ */
+@media (min-width:640px){
+  .hero-stats{grid-template-columns:repeat(4,1fr)}
+  .results-grid{grid-template-columns:repeat(4,1fr)}
+  .biz-grid{grid-template-columns:repeat(2,1fr)}
+  .caps-grid{grid-template-columns:repeat(3,1fr)}
+  .scene-grid{grid-template-columns:repeat(3,1fr)}
+  .case-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1.4fr 1fr 1fr}
+}
+@media (min-width:768px){
+  .about-grid{grid-template-columns:1.05fr .95fr;gap:64px}
+  .logic-wrap{grid-template-columns:1fr 1fr;gap:64px}
+  .biz-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (min-width:1024px){
+  .nav-links{display:flex}
+  .nav-cta{display:inline-flex}
+  .burger{display:none}
+  .biz-grid{grid-template-columns:repeat(5,1fr)}
+  .biz-card{flex-direction:column;gap:10px}
+  .case-grid{grid-template-columns:repeat(3,1fr)}
+  .path-desk{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+  .path-mobile{display:none}
+}
+@media (max-width:1023px){
+  .path-desk{display:none}
+  .path-mobile{display:grid}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+  .hero .rise{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<header id="header">
+  <div class="container nav">
+    <a href="#top" class="logo" aria-label="VAN ROYAL 首页">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="rgba(255,106,42,.14)"/><path d="M16 16 L32 50 L48 16 L38 16 L32 30 L26 16 Z" fill="#ff6a2a"/></svg>
+      <span>
+        <span class="word">VAN ROYAL</span>
+        <div class="cn">旻锜科技</div>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="主导航">
+      <a href="#about" data-target="about">公司简介</a>
+      <a href="#logic" data-target="logic">营销逻辑</a>
+      <a href="#path" data-target="path">发展历程</a>
+      <a href="#biz" data-target="biz">核心业务</a>
+      <a href="#cases" data-target="cases">案例分享</a>
+    </nav>
+    <a href="#contact" class="nav-cta">咨询合作</a>
+    <button class="burger" id="burger" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="移动端导航">
+  <a href="#about" data-target="about">公司简介<small>ABOUT</small></a>
+  <a href="#logic" data-target="logic">营销逻辑<small>LOGIC</small></a>
+  <a href="#path" data-target="path">发展历程<small>PATH</small></a>
+  <a href="#biz" data-target="biz">核心业务<small>BIZ</small></a>
+  <a href="#cases" data-target="cases">案例分享<small>CASES</small></a>
+  <a href="#contact" data-target="contact">咨询合作<small>CONTACT</small></a>
+</nav>
+
+<main id="top">
+<!-- ===== 视图：Hero ===== -->
+<section class="hero" id="hero">
+  <div class="hero-art" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="hero-tag rise">品牌全域营销专家</div>
+    <h1 class="rise"><span class="en">VAN ROYAL · 旻锜科技</span>让品牌增长<br>更确定</h1>
+    <p class="hero-sub rise">以 <b>品牌增长模型</b> × <b>新流量打法</b> × <b>内容营销创意</b> 三大核心能力，为品牌提供从 0 到 1、从 1 到 100 的一站式全域营销服务。</p>
+    <div class="hero-cta rise">
+      <a href="#cases" class="btn btn-primary">查看案例<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="#contact" class="btn btn-ghost">咨询合作</a>
+    </div>
+    <div class="hero-stats rise">
+      <div class="hstat"><div class="num"><span class="counter" data-to="2020">0</span></div><div class="lab">公司成立</div></div>
+      <div class="hstat"><div class="num"><span class="counter" data-to="1000" data-suffix="万">0</span></div><div class="lab">注册资金</div></div>
+      <div class="hstat"><div class="num"><span class="counter" data-to="50" data-suffix="+">0</span></div><div class="lab">行业精英团队</div></div>
+      <div class="hstat"><div class="num"><span class="counter" data-to="10">0</span></div><div class="lab">核心业务模块</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">SCROLL</div>
+</section>
+
+<!-- ===== 视图：平台跑马灯 ===== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><b>淘宝天猫</b><span class="dot"></span>头部内容合作方</span>
+    <span class="marquee-item"><b>抖音</b><span class="dot"></span>官方内容合作方</span>
+    <span class="marquee-item"><b>小红书</b><span class="dot"></span>头部内容合作方</span>
+    <span class="marquee-item"><b>京东</b><span class="dot"></span>代运营服务商</span>
+    <span class="marquee-item"><b>B站</b><span class="dot"></span>内容合作方</span>
+    <span class="marquee-item"><b>快手</b><span class="dot"></span>内容合作方</span>
+    <span class="marquee-item"><b>微博</b><span class="dot"></span>内容合作方</span>
+    <span class="marquee-item"><b>视频号</b><span class="dot"></span>私域运营</span>
+    <span class="marquee-item"><b>TikTok</b><span class="dot"></span>海外投放</span>
+    <span class="marquee-item"><b>淘宝天猫</b><span class="dot"></span>头部内容合作方</span>
+    <span class="marquee-item"><b>抖音</b><span class="dot"></span>官方内容合作方</span>
+    <span class="marquee-item"><b>小红书</b><span class="dot"></span>头部内容合作方</span>
+    <span class="marquee-item"><b>京东</b><span class="dot"></span>代运营服务商</span>
+    <span class="marquee-item"><b>B站</b><span class="dot"></span>内容合作方</span>
+    <span class="marquee-item"><b>快手</b><span class="dot"></span>内容合作方</span>
+    <span class="marquee-item"><b>微博</b><span class="dot"></span>内容合作方</span>
+    <span class="marquee-item"><b>视频号</b><span class="dot"></span>私域运营</span>
+    <span class="marquee-item"><b>TikTok</b><span class="dot"></span>海外投放</span>
+  </div>
+</div>
+
+<!-- ===== 视图：公司简介 ===== -->
+<section class="section-pad" id="about">
+  <div class="container">
+    <div class="eyebrow reveal">ABOUT · 公司简介</div>
+    <h2 class="section-title reveal" data-delay="1">品牌全域营销专家</h2>
+    <div class="about-grid">
+      <div class="about-copy reveal" data-delay="2">
+        <p>旻锜科技（VAN ROYAL）成立于 <b>2020 年</b>，注册资金 <b>1000 万</b>，拥有行业顶尖精英 <b>50+</b> 人，专注于通过三大核心能力，为客户提供助力品牌增长的一站式营销服务。</p>
+        <p>我们专注提供 <b>淘宝天猫代运营</b>、<b>新媒体内容营销</b>，同时也是天猫、京东、小红书、抖音、B 站、快手、微博等平台的头部或官方内容合作方，深度自营和孵化各平台 IP，是国内流量和内容领域的一线玩家。</p>
+        <div class="about-points">
+          <div class="apoint">
+            <span class="idx">01</span>
+            <div><h4>品牌增长模型</h4><p>以数据为底座，构建可复制的品牌增长方法论</p></div>
+          </div>
+          <div class="apoint">
+            <span class="idx">02</span>
+            <div><h4>新流量打法</h4><p>全域平台操盘经验，精准捕捉每一波流量红利</p></div>
+          </div>
+          <div class="apoint">
+            <span class="idx">03</span>
+            <div><h4>内容营销创意</h4><p>从内容到转化，让好内容真正成为增长引擎</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-media reveal" data-delay="3">
+        <div class="frame"><img src="assets/office_2.png" alt="旻锜科技开放式办公区" loading="lazy"></div>
+        <div class="float-card"><div class="n">50+</div><div class="t">行业顶尖精英</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 视图：核心能力 ===== -->
+<section class="caps section-pad" id="caps">
+  <div class="container">
+    <div class="center">
+      <div class="eyebrow reveal" style="justify-content:center">CORE ABILITY · 三大核心能力</div>
+      <h2 class="section-title reveal" data-delay="1">一站式品牌营销服务</h2>
+    </div>
+    <div class="caps-grid">
+      <div class="cap reveal" data-delay="1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="3.2"/></svg></div>
+        <h3>品牌增长模型</h3>
+        <p>「人 · 货 · 场」全局视角 + 数据分析，为品牌构建从定位、选品到投放的完整增长路径。</p>
+      </div>
+      <div class="cap reveal" data-delay="2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+        <h3>新流量打法</h3>
+        <p>抖音、小红书、视频号、TikTok 等全域平台操盘，以内容撬动自然流量，以投流放大确定性。</p>
+      </div>
+      <div class="cap reveal" data-delay="3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.8L20 10l-5.2 3.4L16.5 19 12 15.8 7.5 19l1.7-5.6L4 10l6.1-1.2L12 3z"/></svg></div>
+        <h3>内容营销创意</h3>
+        <p>爆文、短视频、直播内容一站式生产，让品牌内容自带传播力与转化力。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 视图：营销逻辑 ===== -->
+<section class="section-pad logic" id="logic">
+  <div class="container">
+    <div class="eyebrow reveal">LOGIC · 主打逻辑</div>
+    <h2 class="section-title reveal" data-delay="1">以「人 · 货 · 场」构建增长全局观</h2>
+    <div class="logic-wrap">
+      <div class="ring-wrap reveal" data-delay="2">
+        <div class="ring" role="img" aria-label="人货场营销逻辑环形图：中心为VAN ROYAL数据中心，环上依次为分析评估、人群挖掘、媒体投放、运营策略">
+          <svg viewBox="0 0 400 400" aria-hidden="true">
+            <circle class="orbit" cx="200" cy="200" r="186"/>
+            <circle class="orbit" cx="200" cy="200" r="118" stroke-dasharray="2 6"/>
+            <circle class="orbit-accent" cx="200" cy="200" r="152"/>
+          </svg>
+          <div class="node" style="left:50%;top:0"><span class="tag">分析评估</span><span class="en">ANALYSIS</span></div>
+          <div class="node" style="left:100%;top:50%"><span class="tag">人群挖掘</span><span class="en">AUDIENCE</span></div>
+          <div class="node" style="left:50%;top:100%"><span class="tag">媒体投放</span><span class="en">MEDIA BUY</span></div>
+          <div class="node" style="left:0;top:50%"><span class="tag">运营策略</span><span class="en">STRATEGY</span></div>
+          <div class="ring-center"><span class="b">VAN ROYAL</span><span class="s">数据中心</span></div>
+        </div>
+        <div class="whg">
+          <div class="w"><div class="c">人</div><div class="t">人群与用户</div></div>
+          <div class="w"><div class="c">货</div><div class="t">产品与内容</div></div>
+          <div class="w"><div class="c">场</div><div class="t">平台与场景</div></div>
+        </div>
+      </div>
+      <div class="logic-desc reveal" data-delay="3">
+        <p>营销方略产品能力覆盖<b>品牌营销全链路</b>，覆盖人、货、场多维度场景，帮助品牌构架全局观，做好品牌整合营销服务。</p>
+        <div class="logic-steps">
+          <div class="lstep"><span class="n">01</span><span>分析评估 · 诊断品牌现状与机会，建立数据基线</span></div>
+          <div class="lstep"><span class="n">02</span><span>人群挖掘 · 锁定目标客群，构建精准人群画像</span></div>
+          <div class="lstep"><span class="n">03</span><span>媒体投放 · 全域流量组合，让每一分预算有效</span></div>
+          <div class="lstep"><span class="n">04</span><span>运营策略 · 持续迭代，形成可复用的增长闭环</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 视图：发展历程 ===== -->
+<section class="section-pad" id="path">
+  <div class="container">
+    <div class="eyebrow reveal">PATH · 发展历程</div>
+    <h2 class="section-title reveal" data-delay="1">每一步，都踩在流量进化的节点上</h2>
+    <div class="path">
+      <div class="path-desk" aria-label="2020至2024发展历程">
+        <div class="path-item reveal" data-delay="1"><div class="yr">2020</div><h4>传统电商</h4><p>构建传统电商平台 0-1 搭建、运营、策划及优化业务，业务上线。</p></div>
+        <div class="path-item reveal" data-delay="2"><div class="yr">2021</div><h4>小红书</h4><p>开启小红书业务，在用户心智、口碑、功效等方面强力辅助品牌营销。</p></div>
+        <div class="path-item reveal" data-delay="3"><div class="yr">2022</div><h4>视频号</h4><p>视频号运营业务加入，助力品牌在私域领域更好发挥。</p></div>
+        <div class="path-item reveal" data-delay="4"><div class="yr">2023</div><h4>抖音</h4><p>沉淀经验转化为落地能力，促成以抖音为主的社交运营业务模型。</p></div>
+        <div class="path-item reveal" data-delay="5"><div class="yr">2024</div><h4>TikTok</h4><p>在运营、内容、数据、投流、算法积累足够经验后，开启 TikTok 业务。</p></div>
+      </div>
+      <div class="path-mobile" aria-label="2020至2024发展历程">
+        <div class="pm-item reveal"><span class="year">2020</span><h4>传统电商</h4><p>构建传统电商平台 0-1 搭建、运营、策划及优化业务，业务上线。</p></div>
+        <div class="pm-item reveal"><span class="year">2021</span><h4>小红书</h4><p>开启小红书业务，在用户心智、口碑、功效等方面强力辅助品牌营销。</p></div>
+        <div class="pm-item reveal"><span class="year">2022</span><h4>视频号</h4><p>视频号运营业务加入，助力品牌在私域领域更好发挥。</p></div>
+        <div class="pm-item reveal"><span class="year">2023</span><h4>抖音</h4><p>沉淀经验转化为落地能力，促成以抖音为主的社交运营业务模型。</p></div>
+        <div class="pm-item reveal"><span class="year">2024</span><h4>TikTok</h4><p>在运营、内容、数据、投流、算法积累足够经验后，开启 TikTok 业务。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 视图：核心业务 ===== -->
+<section class="biz section-pad" id="biz">
+  <div class="container">
+    <div class="center">
+      <div class="eyebrow reveal" style="justify-content:center">BUSINESS · 核心业务</div>
+      <h2 class="section-title reveal" data-delay="1">全域营销 10 大业务模块</h2>
+    </div>
+    <div class="biz-grid">
+      <div class="biz-card reveal" data-delay="1"><span class="num">01</span><div><h3>品牌定位</h3><p>正确的品牌定位、清晰的战略思路、抓眼球的品牌视觉，量身打造。</p></div></div>
+      <div class="biz-card reveal" data-delay="2"><span class="num">02</span><div><h3>抖音代运营</h3><p>数据驱动，精准获客，快速变现。</p></div></div>
+      <div class="biz-card reveal" data-delay="3"><span class="num">03</span><div><h3>天猫代运营</h3><p>全链路全托管数字化服务。</p></div></div>
+      <div class="biz-card reveal" data-delay="4"><span class="num">04</span><div><h3>直播代运营</h3><p>专业团队，高效带货，轻松实现直播带货目标。</p></div></div>
+      <div class="biz-card reveal" data-delay="5"><span class="num">05</span><div><h3>全域营销</h3><p>多品类、全方位、全渠道、全链路、全数据，实现从 0 到 1 的飞跃。</p></div></div>
+      <div class="biz-card reveal" data-delay="1"><span class="num">06</span><div><h3>京东代运营</h3><p>京东整店运营托管，赋能企业数字化转型。</p></div></div>
+      <div class="biz-card reveal" data-delay="2"><span class="num">07</span><div><h3>数据营销</h3><p>以数据为驱动、用户为中心、效果为导向、技术为支撑。</p></div></div>
+      <div class="biz-card reveal" data-delay="3"><span class="num">08</span><div><h3>新品牌孵化</h3><p>打造爆款品牌，助力新锐品牌快速成长。</p></div></div>
+      <div class="biz-card reveal" data-delay="4"><span class="num">09</span><div><h3>小红书代运营</h3><p>KOL 种草、打造爆款、产出爆文，助力品牌倍速增长。</p></div></div>
+      <div class="biz-card reveal" data-delay="5"><span class="num">10</span><div><h3>微信生态圈</h3><p>公众号、社群、小程序、视频号整合代运营，助力品牌打造与转化。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 视图：成果总览 ===== -->
+<section class="results" id="results">
+  <div class="container">
+    <div class="center">
+      <div class="eyebrow reveal" style="justify-content:center">RESULTS · 成果数据</div>
+      <h2 class="section-title reveal" data-delay="1">用结果说话</h2>
+    </div>
+    <div class="results-grid">
+      <div class="res reveal" data-delay="1"><div class="big"><span class="counter" data-to="1.23" data-decimals="2" data-suffix="亿">0</span></div><div class="cap">抖音直播全年最高 GMV</div><div class="note">食品品牌案例 · 冷启动到成熟期全周期运营</div></div>
+      <div class="res reveal" data-delay="2"><div class="big"><i>¥</i><span class="counter" data-to="4000" data-suffix="万+">0</span></div><div class="cap">本地生活累计总 GMV</div><div class="note">洲际 · 希尔顿 · 万豪 · 华住集团</div></div>
+      <div class="res reveal" data-delay="3"><div class="big"><span class="counter" data-to="400" data-suffix="万+">0</span></div><div class="cap">直播单场最高 GMV</div><div class="note">主播 · 产品 · 直播间个性化打造</div></div>
+      <div class="res reveal" data-delay="4"><div class="big"><span class="counter" data-to="500" data-suffix="万">0</span></div><div class="cap">小红书 6 个月涨粉</div><div class="note">保健品品牌 · 人设 + 场景 + 互动</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 视图：案例展示 ===== -->
+<section class="section-pad" id="cases">
+  <div class="container">
+    <div class="eyebrow reveal">CASES · 案例分享</div>
+    <h2 class="section-title reveal" data-delay="1">服务过的品牌，正在持续增长</h2>
+    <div class="case-tabs reveal" data-delay="2" role="tablist" aria-label="案例筛选">
+      <button class="ctab active" data-filter="all">全部</button>
+      <button class="ctab" data-filter="live">抖音直播</button>
+      <button class="ctab" data-filter="douyin">抖音代运营</button>
+      <button class="ctab" data-filter="red">小红书</button>
+      <button class="ctab" data-filter="ec">京东 · 天猫</button>
+      <button class="ctab" data-filter="oversea">海外投放</button>
+    </div>
+    <div class="case-grid">
+
+      <article class="case-card reveal" data-cat="live" data-delay="1">
+        <div class="top"><span class="brand">食品品牌 · 抖音直播</span><span class="cat">直播代运营</span></div>
+        <p class="desc">构建人货场，打造王牌主播团，爆品塑造，持续收割。</p>
+        <div class="case-metrics">
+          <div class="cm"><div class="v"><em>1.23亿</em></div><div class="k">全年 GMV 突破</div></div>
+          <div class="cm"><div class="v"><em>400万+</em></div><div class="k">单场最高突破</div></div>
+          <div class="cm"><div class="v"><em>1800万</em></div><div class="k">直播间单月突破</div></div>
+          <div class="cm"><div class="v">冷启动 → 成熟期</div><div class="k">以周为维度打造日播高峰</div></div>
+        </div>
+      </article>
+
+      <article class="case-card reveal" data-cat="live" data-delay="2">
+        <div class="top"><span class="brand">酒店集团 · 本地生活</span><span class="cat">直播代运营</span></div>
+        <p class="desc">洲际、希尔顿、万豪、华住集团，直播运营「房间 + 餐食」。</p>
+        <div class="case-metrics">
+          <div class="cm"><div class="v"><em>4000万+</em></div><div class="k">累计总 GMV</div></div>
+          <div class="cm"><div class="v"><em>200万+</em></div><div class="k">单场最高 GMV</div></div>
+          <div class="cm"><div class="v">创意直播间</div><div class="k">场景化搭建与运营</div></div>
+          <div class="cm"><div class="v">本地生活</div><div class="k">酒旅到店转化闭环</div></div>
+        </div>
+      </article>
+
+      <article class="case-card reveal" data-cat="live" data-delay="3">
+        <div class="top"><span class="brand">运动服饰 · NECATHLON</span><span class="cat">直播代运营</span></div>
+        <p class="desc">内容 + 直播双效模式，助力 GMV 突破。</p>
+        <div class="case-metrics">
+          <div class="cm"><div class="v"><em>90万</em></div><div class="k">单场最高 GMV</div></div>
+          <div class="cm"><div class="v"><em>10万+</em></div><div class="k">新增粉丝</div></div>
+          <div class="cm"><div class="v">春日焕新季</div><div class="k">节点营销 IP 打造</div></div>
+          <div class="cm"><div class="v">双效模式</div><div class="k">内容种草 + 直播收割</div></div>
+        </div>
+      </article>
+
+      <article class="case-card reveal" data-cat="douyin" data-delay="1">
+        <div class="top"><span class="brand">必胜客 · 必胜优选旗舰店</span><span class="cat">抖音代运营</span></div>
+        <p class="desc">冷冻食品品类，打造抖音兴趣电商。视频矩阵月产 150 条 + 直播带货 + 节点活动。</p>
+        <div class="case-metrics">
+          <div class="cm"><div class="v"><em>89.6万</em></div><div class="k">粉丝（接手前 20万）</div></div>
+          <div class="cm"><div class="v"><em>1000万+</em></div><div class="k">月销（接手前 200万）</div></div>
+          <div class="cm"><div class="v"><em>1.3亿</em></div><div class="k">单财年销量</div></div>
+          <div class="cm"><div class="v">100W</div><div class="k">单日销量突破</div></div>
+        </div>
+      </article>
+
+      <article class="case-card reveal" data-cat="douyin" data-delay="2">
+        <div class="top"><span class="brand">亨氏 · 母婴旗舰店</span><span class="cat">抖音代运营</span></div>
+        <p class="desc">婴幼儿辅食品牌，从 0 粉丝、0 内容、0 产品起步，内容 + 链接 + 直播完整搭建。</p>
+        <div class="case-metrics">
+          <div class="cm"><div class="v"><em>150万</em></div><div class="k">月销（起步为 0）</div></div>
+          <div class="cm"><div class="v"><em>1000万+</em></div><div class="k">年度销售破千万</div></div>
+          <div class="cm"><div class="v">1.5万</div><div class="k">粉丝增长</div></div>
+          <div class="cm"><div class="v">2432万</div><div class="k">累计点赞</div></div>
+        </div>
+      </article>
+
+      <article class="case-card reveal" data-cat="douyin" data-delay="3">
+        <div class="top"><span class="brand">慧慧的旅行</span><span class="cat">抖音代运营</span></div>
+        <p class="desc">旅游摄影达人 IP，统一视觉与内容风格，围绕实时热点打造热门视频。</p>
+        <div class="case-metrics">
+          <div class="cm"><div class="v"><em>113.5万</em></div><div class="k">粉丝（接手前 89）</div></div>
+          <div class="cm"><div class="v"><em>2585.8万</em></div><div class="k">累计获赞</div></div>
+          <div class="cm"><div class="v">个人 IP</div><div class="k">人设与视觉统一</div></div>
+          <div class="cm"><div class="v">持续运营</div><div class="k">2022 年 7 月至今</div></div>
+        </div>
+      </article>
+
+      <article class="case-card reveal" data-cat="douyin" data-delay="1">
+        <div class="top"><span class="brand">丸子零食</span><span class="cat">抖音代运营</span></div>
+        <p class="desc">食品快消卖场型账号，视频风格统一化 + 精选高毛利产品挂链 + 推流拉高。</p>
+        <div class="case-metrics">
+          <div class="cm"><div class="v"><em>42.5万</em></div><div class="k">粉丝（接手前 1264）</div></div>
+          <div class="cm"><div class="v"><em>24万</em></div><div class="k">月销（接手前 3万）</div></div>
+          <div class="cm"><div class="v">1575万</div><div class="k">累计获赞</div></div>
+          <div class="cm"><div class="v">卖场型</div><div class="k">精品化运营</div></div>
+        </div>
+      </article>
+
+      <article class="case-card reveal" data-cat="red" data-delay="2">
+        <div class="top"><span class="brand">某保健品品牌</span><span class="cat">小红书代运营</span></div>
+        <p class="desc">人设「营养小助手」+ 场景营销 + 高频用户互动，实现爆发式增长。</p>
+        <div class="case-metrics">
+          <div class="cm"><div class="v"><em>500万</em></div><div class="k">6 个月粉丝突破</div></div>
+          <div class="cm"><div class="v">熬夜 / 加班 / 健身</div><div class="k">场景化内容推荐</div></div>
+          <div class="cm"><div class="v">人设打造</div><div class="k">营养小助手</div></div>
+          <div class="cm"><div class="v">用户互动</div><div class="k">评论答疑提升粘性</div></div>
+        </div>
+      </article>
+
+      <article class="case-card reveal" data-cat="red" data-delay="3">
+        <div class="top"><span class="brand">SHSpotlight 聚焦上海</span><span class="cat">小红书代运营</span></div>
+        <p class="desc">高端生活方式双语媒体，图片优化 + 专业内容 + 内容推流打爆文章。</p>
+        <div class="case-metrics">
+          <div class="cm"><div class="v"><em>24.2万</em></div><div class="k">粉丝（接手前 11万）</div></div>
+          <div class="cm"><div class="v"><em>168.9万</em></div><div class="k">获赞与收藏（前 65万）</div></div>
+          <div class="cm"><div class="v">文展 · 地产</div><div class="k">账号定位</div></div>
+          <div class="cm"><div class="v">双语媒体</div><div class="k">高端生活方式人设</div></div>
+        </div>
+      </article>
+
+      <article class="case-card reveal" data-cat="ec" data-delay="1">
+        <div class="top"><span class="brand">某食品 · 京东自营旗舰店</span><span class="cat">京东代运营</span></div>
+        <p class="desc">京东旗舰店基础运营托管，流量与转化双提升。</p>
+        <div class="case-metrics">
+          <div class="cm"><div class="v"><em>6.9%</em></div><div class="k">转化率</div></div>
+          <div class="cm"><div class="v"><em>2.9万</em></div><div class="k">日均 GMV</div></div>
+          <div class="cm"><div class="v">2100+</div><div class="k">日均流量（付费+免费）</div></div>
+          <div class="cm"><div class="v">199</div><div class="k">线上客单价</div></div>
+        </div>
+      </article>
+
+      <article class="case-card reveal" data-cat="ec" data-delay="2">
+        <div class="top"><span class="brand">某 3C 品牌 · 天猫旗舰店</span><span class="cat">天猫代运营</span></div>
+        <p class="desc">万相台站内投放推广，付费流量高效转化。</p>
+        <div class="case-metrics">
+          <div class="cm"><div class="v"><em>2000万+</em></div><div class="k">天猫年度 GMV</div></div>
+          <div class="cm"><div class="v"><em>5000+</em></div><div class="k">日均询盘</div></div>
+          <div class="cm"><div class="v">175</div><div class="k">推广成本</div></div>
+          <div class="cm"><div class="v">200</div><div class="k">平均客单价</div></div>
+        </div>
+      </article>
+
+      <article class="case-card reveal" data-cat="oversea" data-delay="3">
+        <div class="top"><span class="brand">TikTok 与境外媒体投放</span><span class="cat">海外投放</span></div>
+        <p class="desc">YouTube 海投 + 广告页面制作优化，覆盖企业咨询、视频播放与应用推广。</p>
+        <div class="case-metrics">
+          <div class="cm"><div class="v"><em>20万+</em></div><div class="k">广告网站单月点击</div></div>
+          <div class="cm"><div class="v"><em>50万+</em></div><div class="k">视频单月播放</div></div>
+          <div class="cm"><div class="v"><em>30万+</em></div><div class="k">应用单月下载</div></div>
+          <div class="cm"><div class="v">素材本地化</div><div class="k">广告页制作与优化</div></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 视图：公司场景 ===== -->
+<section class="scenes section-pad" id="scenes">
+  <div class="container">
+    <div class="center">
+      <div class="eyebrow reveal" style="justify-content:center">SCENES · 公司场景</div>
+      <h2 class="section-title reveal" data-delay="1">专业团队，从直播间到内容场</h2>
+    </div>
+    <div class="scene-grid">
+      <figure class="scene reveal" data-delay="1"><img src="assets/office_1.png" alt="旻锜科技直播摄影棚" loading="lazy"><figcaption class="tag">直播摄影棚</figcaption></figure>
+      <figure class="scene reveal" data-delay="2"><img src="assets/office_2.png" alt="旻锜科技开放式办公区" loading="lazy"><figcaption class="tag">开放式办公区</figcaption></figure>
+      <figure class="scene reveal" data-delay="3"><img src="assets/office_3.png" alt="旻锜科技服装直播拍摄场景" loading="lazy"><figcaption class="tag">直播拍摄现场</figcaption></figure>
+    </div>
+    <p class="scene-note reveal">依托行业多年经验，打造数据运营模式，深挖品牌线上直播运营的痛点，高效链接流量与品牌，提供<b>一站式品牌线上直播管理解决方案</b>。</p>
+  </div>
+</section>
+
+<!-- ===== 视图：联系 CTA ===== -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <div class="cta-box">
+      <div class="eyebrow reveal" style="justify-content:center">CONTACT · 咨询合作</div>
+      <h2 class="reveal" data-delay="1">开启品牌的下一轮增长</h2>
+      <p class="reveal" data-delay="2">无论是从 0 到 1 的冷启动，还是从 1 到 100 的规模化，我们都能为您提供定制化的全域营销方案。</p>
+      <div class="cta-contact">
+        <a class="cci reveal" data-delay="3" href="tel:13818103434" aria-label="拨打 13818103434">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.5 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
+          <div><div class="k">联系电话 · 微信同号</div><div class="v">138 1810 3434</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="footer">
+<div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="word">VAN ROYAL</div>
+        <p>旻锜科技（VanRoyal Culture Communication Co., Ltd）· 品牌全域营销专家，助力品牌在全域流量中持续增长。</p>
+      </div>
+      <div class="foot-col">
+        <h5>快速导航</h5>
+        <a href="#about">公司简介</a>
+        <a href="#logic">营销逻辑</a>
+        <a href="#path">发展历程</a>
+        <a href="#biz">核心业务</a>
+        <a href="#cases">案例分享</a>
+      </div>
+      <div class="foot-col">
+        <h5>合作平台</h5>
+        <a href="#cases">淘宝天猫 · 代运营</a>
+        <a href="#cases">抖音 · 直播代运营</a>
+        <a href="#cases">小红书 · 内容营销</a>
+        <a href="#cases">京东 · 整店托管</a>
+        <a href="#cases">TikTok · 海外投放</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 旻锜科技 · VAN ROYAL CULTURE COMMUNICATION CO., LTD</p>
+      <p>沪ICP备备案号待补充 · 本站为品牌展示页</p>
+    </div>
+  </div>
+</footer>
+
+<button id="toTop" aria-label="返回顶部"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<div id="toast" role="status"></div>
+
+<!-- ===== 脚本 ===== -->
+<script>
+// ===== 导航滚动状态 =====
+const header = document.getElementById('header');
+const progress = document.getElementById('progress');
+const toTop = document.getElementById('toTop');
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+const toast = document.getElementById('toast');
+let toastTimer = null;
+
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toast.classList.remove('show'), 2600);
+}
+
+window.addEventListener('scroll', ()=>{
+  const y = window.scrollY;
+  header.classList.toggle('scrolled', y > 24);
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+  toTop.classList.toggle('show', y > 720);
+  // 导航高亮
+  const secs = document.querySelectorAll('main section[id], section[id]');
+  let cur = '';
+  secs.forEach(s=>{
+    if (s.getBoundingClientRect().top <= 140) cur = s.id;
+  });
+  document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a=>{
+    a.classList.toggle('active', a.dataset.target === cur);
+  });
+}, {passive:true});
+
+toTop.addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
+
+// ===== 移动端菜单 =====
+burger.addEventListener('click', ()=>{
+  const open = mobileMenu.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+});
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
+  mobileMenu.classList.remove('open');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded','false');
+}));
+
+// ===== 滚动显现 =====
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, {threshold:.14, rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ===== 数字滚动 =====
+function animateCount(el){
+  const to = parseFloat(el.dataset.to);
+  const dec = parseInt(el.dataset.decimals || '0', 10);
+  const suffix = el.dataset.suffix || '';
+  const dur = 1400;
+  const start = performance.now();
+  function frame(now){
+    const p = Math.min((now - start) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const val = to * eased;
+    el.textContent = (dec ? val.toFixed(dec) : Math.round(val).toLocaleString('en-US')) + suffix;
+    if (p < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+const cio = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if (e.isIntersecting){ animateCount(e.target); cio.unobserve(e.target); }
+  });
+}, {threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>cio.observe(el));
+
+// ===== 案例筛选 =====
+const tabs = document.querySelectorAll('.ctab');
+const cards = document.querySelectorAll('.case-card');
+tabs.forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    tabs.forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const f = tab.dataset.filter;
+    cards.forEach(card=>{
+      const show = f === 'all' || card.dataset.cat === f;
+      if (show){
+        card.classList.add('in');   // 确保未滚动到的卡片直接可见
+        card.classList.remove('hide');
+        card.classList.add('fade');
+        setTimeout(()=>card.classList.remove('fade'), 30);
+      } else {
+        card.classList.add('hide');
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
